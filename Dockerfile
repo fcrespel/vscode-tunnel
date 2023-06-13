@@ -34,6 +34,14 @@ RUN curl -sSLf -o /tmp/helm.tar.gz "https://get.helm.sh/helm-v${HELM_VERSION}-li
     tar -xf /tmp/helm.tar.gz -C /usr/local/bin --strip-components=1 linux-amd64/helm && \
     rm -f /tmp/helm.tar.gz
 
+# Download and install Google Cloud SDK
+ARG CLOUDSDK_VERSION=434.0.0
+RUN curl -sSLf -o /tmp/google-cloud-sdk.tar.gz "https://dl.google.com/dl/cloudsdk/channels/rapid/downloads/google-cloud-cli-${CLOUDSDK_VERSION}-linux-x86_64.tar.gz" && \
+    tar -xf /tmp/google-cloud-sdk.tar.gz -C /opt && \
+    rm -f /tmp/google-cloud-sdk.tar.gz && \
+    /opt/google-cloud-sdk/install.sh --quiet --usage-reporting false && \
+    ln -s /opt/google-cloud-sdk/path.bash.inc /etc/profile.d/google-cloud-sdk.sh
+
 # Download and install VS Code CLI
 RUN curl -sSLf -o /tmp/vscode-cli.tar.gz "https://code.visualstudio.com/sha/download?build=stable&os=cli-alpine-x64" && \
     tar -xf /tmp/vscode-cli.tar.gz -C /usr/local/bin && \

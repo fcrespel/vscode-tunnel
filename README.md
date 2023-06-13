@@ -52,6 +52,7 @@ The following arguments can be used during the build phase to configure the imag
 
 | Argument | Description | Default value |
 | -------- | ----------- | ------------- |
+| CLOUDSDK_VERSION | Google Cloud SDK version to install | 434.0.0 |
 | HELM_VERSION | Helm version to install | 3.11.3 |
 | KUBECTL_VERSION | kubectl version to install | 1.27.1 |
 | MAVEN_VERSION | Maven version to install | 3.8.8 |
