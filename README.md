@@ -1,6 +1,6 @@
 # VS Code Tunnel Docker image
 
-This container image includes the **VS Code CLI** along with useful build dependencies and tools (Git, Java, Maven, NodeJS, Python, kubectl, helm, ...).
+This container image includes the **VS Code CLI** along with useful build dependencies and tools (Git, Java, Maven, NodeJS, Python, Docker CLI, kubectl, helm, gcloud, ...).
 
 When run without arguments, it will automatically start in [tunnel mode](https://code.visualstudio.com/docs/remote/tunnels) and await authentication. Make sure to check the logs if you are running it in the background and follow the displayed instructions.
 
@@ -60,6 +60,7 @@ The following arguments can be used during the build phase to configure the imag
 | TF_VERSION | Terraform version to install | 1.4.6 |
 | USER_GID | Group ID of the user to create | 100 |
 | USER_UID | User ID of the user to create | 1000 |
+| VSCODE_VERSION | VS Code CLI version to install | 1.80.1 |
 
 ## Volumes
 

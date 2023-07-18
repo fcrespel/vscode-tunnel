@@ -10,6 +10,13 @@ RUN apt-get -q update && \
 ARG ROOT_CA_URL=
 RUN test -z "${ROOT_CA_URL}" || (curl -sSLf -O --output-dir /usr/local/share/ca-certificates "${ROOT_CA_URL}" && update-ca-certificates)
 
+# Download and install Docker CLI
+RUN curl -sSLf https://download.docker.com/linux/ubuntu/gpg | gpg --dearmor -o /etc/apt/keyrings/docker.gpg && \
+    echo "deb [arch=amd64 signed-by=/etc/apt/keyrings/docker.gpg] https://download.docker.com/linux/ubuntu jammy stable" > /etc/apt/sources.list.d/docker.list && \
+    apt-get -q update && \
+    DEBIAN_FRONTEND="noninteractive" apt-get -q install -y -o Dpkg::Options::="--force-confnew" --no-install-recommends docker-ce-cli docker-buildx-plugin docker-compose-plugin && \
+    rm -rf /var/lib/apt/lists/*
+
 # Download and install Maven
 ARG MAVEN_VERSION=3.8.8
 RUN curl -sSLf -o /tmp/maven.tar.gz "https://archive.apache.org/dist/maven/maven-3/${MAVEN_VERSION}/binaries/apache-maven-${MAVEN_VERSION}-bin.tar.gz" && \
@@ -43,7 +50,9 @@ RUN curl -sSLf -o /tmp/google-cloud-sdk.tar.gz "https://dl.google.com/dl/cloudsd
     ln -s /opt/google-cloud-sdk/path.bash.inc /etc/profile.d/google-cloud-sdk.sh
 
 # Download and install VS Code CLI
-RUN curl -sSLf -o /tmp/vscode-cli.tar.gz "https://code.visualstudio.com/sha/download?build=stable&os=cli-alpine-x64" && \
+ARG VSCODE_CLI_VERSION=1.80.1
+RUN VSCODE_CLI_URL=$(curl -sSLf "https://update.code.visualstudio.com/api/versions/${VSCODE_CLI_VERSION}/cli-alpine-x64/stable" | jq -r ".url") && \
+    curl -sSLf -o /tmp/vscode-cli.tar.gz "${VSCODE_CLI_URL}" && \
     tar -xf /tmp/vscode-cli.tar.gz -C /usr/local/bin && \
     rm -f /tmp/vscode-cli.tar.gz
 
