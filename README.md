@@ -52,15 +52,16 @@ The following arguments can be used during the build phase to configure the imag
 
 | Argument | Description | Default value |
 | -------- | ----------- | ------------- |
-| CLOUDSDK_VERSION | Google Cloud SDK version to install | 434.0.0 |
-| HELM_VERSION | Helm version to install | 3.11.3 |
-| KUBECTL_VERSION | kubectl version to install | 1.27.1 |
-| MAVEN_VERSION | Maven version to install | 3.8.8 |
+| CLOUDSDK_VERSION | Google Cloud SDK version to install | 484.0.0 |
+| DOCKER_VERSION | Docker CLI version to install | 27.0.3 |
+| HELM_VERSION | Helm version to install | 3.15.3 |
+| KUBECTL_VERSION | kubectl version to install | 1.30.3 |
+| MAVEN_VERSION | Maven version to install | 3.9.8 |
 | ROOT_CA_URL | Additional root certificate authority URL to install | |
-| TF_VERSION | Terraform version to install | 1.4.6 |
+| TF_VERSION | Terraform version to install | 1.9.2 |
 | USER_GID | Group ID of the user to create | 100 |
 | USER_UID | User ID of the user to create | 1000 |
-| VSCODE_VERSION | VS Code CLI version to install | 1.80.1 |
+| VSCODE_VERSION | VS Code CLI version to install | 1.91.1 |
 
 ## Volumes
 
