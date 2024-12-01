@@ -63,7 +63,7 @@ COPY entrypoint.sh /entrypoint.sh
 # Create user
 ARG USER_UID=1000
 ARG USER_GID=100
-RUN useradd -o -s /bin/bash -u ${USER_UID} -g ${USER_GID} -m vscode
+RUN userdel ubuntu && rm -Rf /home/ubuntu && useradd -o -s /bin/bash -u ${USER_UID} -g ${USER_GID} -m vscode
 USER ${USER_UID}
 WORKDIR /home/vscode
 
