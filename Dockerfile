@@ -3,7 +3,7 @@ FROM ubuntu:24.04
 
 # Install packages
 RUN apt-get -q update && \
-    DEBIAN_FRONTEND="noninteractive" apt-get -q install -y -o Dpkg::Options::="--force-confnew" --no-install-recommends buildah ca-certificates curl git gpg jq less make nodejs npm openjdk-17-jdk openssl python3 python3-pip python3-virtualenv unzip vim wget yq zip && \
+    DEBIAN_FRONTEND="noninteractive" apt-get -q install -y -o Dpkg::Options::="--force-confnew" --no-install-recommends build-essential buildah ca-certificates curl git gpg jq less make nodejs npm openjdk-17-jdk openssl python3 python3-pip python3-virtualenv unzip vim wget yq zip && \
     rm -rf /var/lib/apt/lists/*
 
 # Import additional root CA
